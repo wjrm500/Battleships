@@ -44,19 +44,16 @@ public class Board {
         return str.toString();
     }
 
-    public void randomlyPlace(Battleship battleship) {
-        // TODO: Currently just placing Battleship on topmost row
-        int battleshipSize = battleship.getSize();
-        if (battleshipSize > numCols) {
-            System.out.println("Battleship too large to be placed");
-            System.exit(1);
-        }
-        ArrayList<Cell> cellsOccupied = new ArrayList();
-        for (int i = 0; i < battleshipSize; i++) {
-            Cell cell = cells[0][i];
-            cellsOccupied.add(cell);
-        }
-        battleship.setCellsOccupied(cellsOccupied);
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
+
+    public Cell getCell(int row, int column) {
+        return cells[row][column];
     }
 
     public Cell getCell(CellReference cellReference) {

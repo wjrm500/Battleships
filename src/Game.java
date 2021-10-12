@@ -19,7 +19,7 @@ public class Game {
     private void setupGame(int numRows, int numCols, int battleshipSize) {
         board = new Board(numRows, numCols);
         battleship = new Battleship(battleshipSize);
-        board.randomlyPlace(battleship);
+        battleship.randomlyPlace(board);
     }
 
     private void playGame() {
