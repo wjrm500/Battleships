@@ -24,13 +24,13 @@ public class Game {
 
     private void playGame() {
         while (!isOver) {
+            System.out.print(board);
             numGuesses++;
             CellReference cellReference = userClient.getCellReferenceFromUser();
-            Cell cell = battleship.checkForHit(cellReference);
-            boolean hit = !Objects.isNull(cell);
-            if (hit) {
-                cell.markAsHit();
-                userClient.printHit(cell);
+            Cell cell = board.getCell(cellReference);
+            cell.markAsGuessed();
+            if (cell.hasBattleship()) {
+                userClient.printHit();
             } else {
                 userClient.printMissed();
             }

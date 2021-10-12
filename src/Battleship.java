@@ -26,25 +26,18 @@ public class Battleship {
 
     public void setCellsOccupied(ArrayList<Cell> cellsOccupied) {
         this.cellsOccupied = cellsOccupied;
-    }
-
-    public Cell checkForHit(CellReference cellReference) {
-        for (Cell cell : cellsOccupied) {
-            boolean hit = cell.checkForHit(cellReference);
-            if (hit) {
-                return cell;
-            }
+        for (Cell cellOccupied : cellsOccupied) {
+            cellOccupied.setBattleship(this);
         }
-        return null;
     }
 
     public boolean checkForSunk() {
-        int hitCells = 0;
+        int guessedCells = 0;
         for (Cell cell : cellsOccupied) {
-            if (cell.getHit()) {
-                hitCells++;
+            if (cell.isGuessed()) {
+                guessedCells++;
             }
         }
-        return size == hitCells;
+        return size == guessedCells;
     }
 }

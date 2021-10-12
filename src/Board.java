@@ -16,6 +16,24 @@ public class Board {
         }
     }
 
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                Cell cell = cells[i][j];
+                char c;
+                if (cell.isGuessed()) {
+                    c = cell.hasBattleship() ? 'H' : 'M';
+                } else {
+                    c = '*';
+                }
+                str.append(String.format(" %c ", c));
+            }
+            str.append("\n");
+        }
+        return str.toString();
+    }
+
     public void randomlyPlace(Battleship battleship) {
         // TODO: Currently just placing Battleship on topmost row
         int battleshipSize = battleship.getSize();
@@ -25,8 +43,13 @@ public class Board {
         }
         ArrayList<Cell> cellsOccupied = new ArrayList();
         for (int i = 0; i < battleshipSize; i++) {
-            cellsOccupied.add(cells[0][i]);
+            Cell cell = cells[0][i];
+            cellsOccupied.add(cell);
         }
         battleship.setCellsOccupied(cellsOccupied);
+    }
+
+    public Cell getCell(CellReference cellReference) {
+        return cells[cellReference.row][cellReference.column];
     }
 }

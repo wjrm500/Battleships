@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class UserClient {
     public static CellReference getCellReferenceFromUser() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a cell reference: ");
+        System.out.println("Enter a cell reference (format: \"ROW,COL\"): ");
         String input = scanner.nextLine();
         String[] splitArr = input.split(",", 0);
         int splitArrLen = splitArr.length;
@@ -17,7 +17,7 @@ public class UserClient {
         return cellReference;
     }
 
-    public static void printHit(Cell cell) {
+    public static void printHit() {
         System.out.println("You hit!");
     }
 
