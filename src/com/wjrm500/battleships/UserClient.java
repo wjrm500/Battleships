@@ -1,3 +1,5 @@
+package com.wjrm500.battleships;
+
 import java.util.Scanner;
 
 public class UserClient {

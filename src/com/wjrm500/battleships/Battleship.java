@@ -1,3 +1,5 @@
+package com.wjrm500.battleships;
+
 import java.util.ArrayList;
 
 public class Battleship {
@@ -16,7 +18,7 @@ public class Battleship {
 
     public void setSize(int size) {
         if (size < 1) {
-            System.out.println("Battleship must have a size of at least one unit");
+            System.out.println("com.wjrm500.battleships.Battleship must have a size of at least one unit");
             System.exit(1);
         }
         this.size = size;
@@ -47,7 +49,7 @@ public class Battleship {
         int numRows = board.getNumRows();
         int numCols = board.getNumCols();
         if (size > Math.min(numRows, numCols)) {
-            System.out.println("Battleship too large to be placed");
+            System.out.println("com.wjrm500.battleships.Battleship too large to be placed");
             System.exit(1);
         }
         String dir = Math.random() >= 0.5 ? VERTICAL : HORIZONTAL;

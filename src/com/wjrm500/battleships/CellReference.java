@@ -1,3 +1,5 @@
+package com.wjrm500.battleships;
+
 public class CellReference {
     public int row;
     public int column;

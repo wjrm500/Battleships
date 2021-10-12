@@ -1,4 +1,7 @@
-import java.util.Objects;
+package com.wjrm500.battleships;
+
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
 
 public class Game {
     private Board board;
@@ -8,11 +11,13 @@ public class Game {
     private int numGuesses = 1;
 
     public static void main(String[] args) {
-        int numRows = 5;
-        int numCols = 5;
-        int battleshipSize = 2;
+        GameArgs gameArgs = new GameArgs();
+        JCommander jc = JCommander.newBuilder()
+            .addObject(gameArgs)
+            .build();
+        jc.parse(args);
         Game game = new Game();
-        game.setupGame(numRows, numCols, battleshipSize);
+        game.setupGame(gameArgs.numRows, gameArgs.numCols, gameArgs.shipSize);
         game.playGame();
     }
 

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package com.wjrm500.battleships;
 
 public class Board {
     private int numRows;
@@ -18,7 +18,7 @@ public class Board {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("The Board:\n  ");
+        str.append("The com.wjrm500.battleships.Board:\n  ");
         // Print alphabetic column names
         for (int i = 97; i < 97 + numCols; i++) {
             char c = (char) i;
