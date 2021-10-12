@@ -3,30 +3,42 @@ import java.util.Scanner;
 public class UserClient {
     public static CellReference getCellReferenceFromUser() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a cell reference (format: \"ROW,COL\"): ");
+        System.out.println("Enter a cell reference (format: \"ROW,COL\" e.g. \"1,a\"): ");
         String input = scanner.nextLine();
-        String[] splitArr = input.split(",", 0);
-        int splitArrLen = splitArr.length;
-        if (splitArrLen != 2) {
-            System.out.println("Invalid cell reference");
-            System.exit(1);
+        // Validate general format
+        if (!input.matches("[1-9],[a-z]")) {
+            printInvalid();
+            return null;
         }
-        int row = Integer.parseInt(splitArr[0]); // TODO: Implement checks to see if definitely int
-        int column = Integer.parseInt(splitArr[1]);
-        CellReference cellReference = new CellReference(row, column);
+        String[] splitArr = input.split(",", 2);
+        String rowStr = splitArr[0];
+        String colStr = splitArr[1];
+        int rowNum = Integer.parseInt(rowStr);
+        rowNum -= 1; // To account for zero-indexing
+        char col = colStr.charAt(0);
+        int colNum = (int) col - 97;
+        CellReference cellReference = new CellReference(rowNum, colNum);
         return cellReference;
     }
 
     public static void printHit() {
-        System.out.println("You hit!");
+        System.out.println("You hit!\n");
     }
 
     public static void printMissed() {
-        System.out.println("You missed!");
+        System.out.println("You missed!\n");
     }
 
     public static void printSunk(int numGuesses) {
-        String str = String.format("You sunk the battleship in %d guesses!", numGuesses);
+        String str = String.format("You sunk the battleship in %d guesses!\n", numGuesses);
         System.out.println(str);
+    }
+
+    public static void printInvalid() {
+        System.out.println("Invalid cell reference\n");
+    }
+
+    public static void printAlreadyGuessed() {
+        System.out.println("You've already guessed this cell!\n");
     }
 }

@@ -5,7 +5,7 @@ public class Game {
     private Battleship battleship;
     private UserClient userClient;
     private boolean isOver;
-    private int numGuesses;
+    private int numGuesses = 1;
 
     public static void main(String[] args) {
         int numRows = 5;
@@ -25,9 +25,18 @@ public class Game {
     private void playGame() {
         while (!isOver) {
             System.out.print(board);
-            numGuesses++;
             CellReference cellReference = userClient.getCellReferenceFromUser();
+            if (cellReference == null) {
+                continue;
+            }
             Cell cell = board.getCell(cellReference);
+            if (cell == null) {
+                continue;
+            }
+            if (cell.isGuessed()) {
+                UserClient.printAlreadyGuessed();
+                continue;
+            }
             cell.markAsGuessed();
             if (cell.hasBattleship()) {
                 userClient.printHit();
@@ -39,6 +48,7 @@ public class Game {
                 userClient.printSunk(numGuesses);
                 isOver = true;
             }
+            numGuesses++;
         }
     }
 }

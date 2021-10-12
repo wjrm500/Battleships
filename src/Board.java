@@ -18,7 +18,16 @@ public class Board {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
+        str.append("The Board:\n  ");
+        // Print alphabetic column names
+        for (int i = 97; i < 97 + numCols; i++) {
+            char c = (char) i;
+            str.append(String.format(" %c ", c));
+        }
+        str.append('\n');
+        // Print rest of board
         for (int i = 0; i < numRows; i++) {
+            str.append(String.format("%d ", i + 1));
             for (int j = 0; j < numCols; j++) {
                 Cell cell = cells[i][j];
                 char c;
@@ -29,8 +38,9 @@ public class Board {
                 }
                 str.append(String.format(" %c ", c));
             }
-            str.append("\n");
+            str.append('\n');
         }
+        str.append('\n');
         return str.toString();
     }
 
@@ -50,6 +60,10 @@ public class Board {
     }
 
     public Cell getCell(CellReference cellReference) {
+        if (cellReference.row > numRows - 1 || cellReference.column > numCols - 1) {
+            UserClient.printInvalid();
+            return null;
+        }
         return cells[cellReference.row][cellReference.column];
     }
 }
